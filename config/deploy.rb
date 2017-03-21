@@ -34,9 +34,9 @@ namespace :deploy do
     end
   end
 
-    # linked_files で使用するファイルをアップロードするタスク
-    #   # deployが行われる前に実行する必要がある。
-    desc 'upload important files'
+  # linked_files で使用するファイルをアップロードするタスク
+  #   # deployが行われる前に実行する必要がある。
+  desc 'upload important files'
   task :upload do
     on roles(:app) do |host|
       execute :mkdir, '-p', "#{shared_path}/config"
@@ -46,7 +46,7 @@ namespace :deploy do
   end
 
   # webサーバー再起動時にキャッシュを削除する
-    after :restart, :clear_cache do
+  after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
